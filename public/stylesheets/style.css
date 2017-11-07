@@ -17,3 +17,13 @@ header {
 .headerLogo{
 	height: 75px;
 }
+.covers{
+	height: 300px;
+	width: 300px;
+}
+
+.media {
+	padding:20px;
+	padding-left: 75px;
+
+}
