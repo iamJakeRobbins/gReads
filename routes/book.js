@@ -7,7 +7,8 @@ router.get('/', function(req, res, next) {
 	knex('book')
 	.select()
 	.then(book => {
-  res.render('allBook', {book: book });
+  res.render('allBook', {book: book })
+	console.log({book: book.length});
 })
 });
 
