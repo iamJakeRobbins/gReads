@@ -42,6 +42,7 @@ router.get('/new', (req, res) =>{
 	res.render('newBook')
 })
 
+// router for single book view
 router.get('/:id', (req,res) =>{
 	console.log(req.params.id);
 	const id = req.params.id;
@@ -62,6 +63,18 @@ router.get('/:id', (req,res) =>{
 }
 })
 
+// router for single book edit view
+router.get('/:id/editBook', (req,res) => {
+	const id = req.params.id;
+	knex('book')
+	.select()
+	.where('id', id)
+	.first()
+	.then(book =>{
+	res.render('editBook', book)
+})
+})
+
 // Post a new book and redirect to all books
 router.post('/', (req,res) =>{
 	validator(req,res, (book) =>{
@@ -72,6 +85,19 @@ router.post('/', (req,res) =>{
 			res.redirect('/book')
 		})
 	})
+})
+
+// Put request to update existing book entry
+router.put('/:id', (req, res) =>{
+validator(req,res,(book)=> {
+	knex('book')
+	.where('id', req.params.id)
+	.update(book, 'id')
+	.then(ids =>{
+		const id = ids[0]
+		res.redirect(`/book/${id}`)
+	})
+})
 })
 
 module.exports = router;
