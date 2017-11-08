@@ -29,7 +29,7 @@ function validId(id) {
 }
 
 router.get('/new', (req, res) =>{
-	res.render('newauthor')
+	res.render('newAuthor')
 })
 
 router.get('/', function(req, res, next) {
