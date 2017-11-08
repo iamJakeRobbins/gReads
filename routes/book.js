@@ -3,6 +3,8 @@ var router = express.Router();
 const knex = require('../db/knex')
 
 // functions to be refactored
+
+// Title validation
 function validEntry(book){
 	return typeof book.title == 'string' &&
 		book.title.trim() != ''
@@ -38,6 +40,26 @@ router.get('/', function(req, res, next) {
 });
 router.get('/new', (req, res) =>{
 	res.render('newBook')
+})
+
+router.get('/:id', (req,res) =>{
+	console.log(req.params.id);
+	const id = req.params.id;
+	console.log(id);
+	if (typeof id != 'undefined') {
+		knex('book')
+		.select()
+		.where ('id', id)
+		.first()
+		.then(book => {
+		res.render('singleBook', book)
+	})
+	}else {
+		res.status(500)
+		res.render('error', {
+			message: 'invalid'
+	})
+}
 })
 
 // Post a new book and redirect to all books
