@@ -1,0 +1,14 @@
+<h1>Authors</h1>
+<a href="/author/new"> <button type="button" name="button">Add a New author</button></a>
+{{#each author}}
+<div class="media">
+  <a href="/author/{{id}}"><img class="mr-3 covers" src="{{portrait}}" alt="Generic placeholder image"></a>
+  <div class="media-body">
+    <h3 class="mt-0">{{name}}</h5>
+		<a href="/book/{{id}}/editBook"> <button type="button" name="button">Edit</button></a>
+		<a href="/book/{{id}}/deleteBook"><button type="button" name="button">Delete</button></a>
+{{bio}}
+  </div>
+</div>
+{{/each}}
+<h6>number of authors in our database: {{author.length}}</h6>
