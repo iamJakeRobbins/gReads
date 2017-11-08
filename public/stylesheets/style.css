@@ -13,6 +13,16 @@ header {
 	display: flex;
 	background-color: lightblue;
 }
+.landingPageImg{
+display: flex;
+justify-content: space-around;
+padding: 50px;
+padding-top: 150px;
+}
+.sidebarImg{
+	height: 100px;
+	width: 100px;
+}
 
 .headerLogo{
 	height: 75px;
@@ -25,5 +35,8 @@ header {
 .media {
 	padding:20px;
 	padding-left: 75px;
+}
 
+.side-nav{
+	display: flex;
 }
