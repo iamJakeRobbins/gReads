@@ -36,6 +36,17 @@ router.get('/', function(req, res, next) {
 })
 });
 
+router.get('/:id/editAuthor', (req,res) => {
+	const id = req.params.id;
+	knex('author')
+	.select()
+	.where('id', id)
+	.first()
+	.then(author =>{
+	res.render('editAuthor', author)
+})
+})
+
 router.get('/:id', (req,res) =>{
 	console.log(req.params.id);
 	const id = req.params.id;
@@ -68,6 +79,18 @@ router.post('/', (req,res) =>{
 			res.redirect('/author')
 		})
 	})
+})
+
+router.put('/:id', (req, res) =>{
+validator(req,res,(author)=> {
+	knex('author')
+	.where('id', req.params.id)
+	.update(author, 'id')
+	.then(ids =>{
+		const id = ids[0]
+		res.redirect('/author/')
+	})
+})
 })
 
 module.exports = router;
