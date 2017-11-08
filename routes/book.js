@@ -29,6 +29,9 @@ function validator(req,res,callback){
 }
 }
 
+function validId(id) {
+  return !isNaN(id);
+}
 /* GET all books page. */
 router.get('/', function(req, res, next) {
 	knex('book')
@@ -75,6 +78,18 @@ router.get('/:id/editBook', (req,res) => {
 })
 })
 
+router.get('/:id/deleteBook', (req,res) => {
+	const id = req.params.id;
+	knex('book')
+	.select()
+	.where('id', id)
+	.first()
+	.then(book =>{
+	res.render('deleteBook', book)
+})
+})
+
+
 // Post a new book and redirect to all books
 router.post('/', (req,res) =>{
 	validator(req,res, (book) =>{
@@ -95,9 +110,26 @@ validator(req,res,(book)=> {
 	.update(book, 'id')
 	.then(ids =>{
 		const id = ids[0]
-		res.redirect(`/book/${id}`)
+		res.redirect('/book/')
 	})
 })
 })
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  if(validId(id)) {
+    knex('book')
+      .where('id', id)
+      .del()
+      .then(() => {
+        res.redirect('/book');
+      });
+  } else {
+    res.status( 500);
+    res.render('error', {
+      message:  'Invalid id'
+    });
+  }
+});
 
 module.exports = router;
