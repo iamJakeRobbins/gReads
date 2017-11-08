@@ -35,9 +35,9 @@ router.get('/', function(req, res, next) {
 	.select()
 	.then(book => {
   res.render('allBook', {book: book })
-	console.log({book: book.length});
 })
 });
+
 router.get('/new', (req, res) =>{
 	res.render('newBook')
 })
