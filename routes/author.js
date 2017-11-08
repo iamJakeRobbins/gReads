@@ -24,6 +24,10 @@ function validator(req,res,callback){
 }
 }
 
+function validId(id) {
+  return !isNaN(id);
+}
+
 router.get('/new', (req, res) =>{
 	res.render('newauthor')
 })
@@ -67,6 +71,17 @@ router.get('/:id', (req,res) =>{
 }
 })
 
+router.get('/:id/deleteAuthor', (req,res) => {
+	const id = req.params.id;
+	knex('author')
+	.select()
+	.where('id', id)
+	.first()
+	.then(author =>{
+	res.render('deleteAuthor', author)
+})
+})
+
 
 
 // Post a new author and redirect to all authors
@@ -92,5 +107,22 @@ validator(req,res,(author)=> {
 	})
 })
 })
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  if(validId(id)) {
+    knex('author')
+      .where('id', id)
+      .del()
+      .then(() => {
+        res.redirect('/author');
+      });
+  } else {
+    res.status( 500);
+    res.render('error', {
+      message:  'Invalid id'
+    });
+  }
+});
 
 module.exports = router;
