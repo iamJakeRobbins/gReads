@@ -8,8 +8,27 @@
 
   </head>
 	<header>
-		<a href="/"> <img src="/media/glogo.png" alt="galvanize reads logo" class="headerLogo"> </a>
-		<h1>Galvanize Reads</h1>
+		<nav>
+			<div class="leftHeader">
+
+			<a href="/"> <img src="/media/glogo.png" alt="galvanize reads logo" class="headerLogo"> </a>
+			<h1>Galvanize Reads</h1>
+		</div>
+		<div class="rightHeader">
+			<h5 class='center'>Search for your favorites below</h5>
+			 <form action="/search" method="GET">
+				 <div class="input-field">
+					 <label>Search</label>
+					 <input type="text" name="search" value="{{search}}" placeholder="I don't work... But I Will">
+			<!-- <form class="form" action="/search" method="get">
+				<div class="form-group">
+					<label for="search">Search</label><br>
+					<input type="search" name="name" id="name" placeholder="I don't work...but I will!" value="{{search}}">
+					<button type="button" name="button">Search Now</button> -->
+				</form>
+				</div>
+		</div>
+		</nav>
 	</header>
   <body>
 		<div class="side-nav">

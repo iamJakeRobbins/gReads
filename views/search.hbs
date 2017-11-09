@@ -1,0 +1,35 @@
+<h4>Search Results for {{search}}: </h4>
+		 {{#if book}}
+			 {{#each book}}
+				<div class="col s4">
+					<div class="card medium">
+						<div class="card-image">
+							<a href="/books/{{this.id}}"> <img src="{{this.cover}}"></a>
+						</div>
+						<div class="card-content">
+						 <h6 class='center'>{{this.title}}</h6>
+						 <p>{{this.description}}</p>
+						</div>
+						<div class="card-action">
+
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			{{/if}}
+			{{#if author}}
+				{{#each author}}
+				 <div class="col s4">
+					 <div class="card">
+						 <div class="card-image">
+							 <a href="/authors/{{this.id}}"><img src="{{this.portrait}}"></a>
+						 </div>
+						 <div class="card-content">
+							{{this.name}}
+						 </div>
+						 <div class="card-action">
+
+						 </div>
+					 </div>
+				 </div>
+				 {{/each}}

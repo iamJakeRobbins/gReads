@@ -6,17 +6,26 @@ body {
 a {
   color: #00B7FF;
 }
-
 header {
 	margin: 0;
 	padding: 0;
 	display: flex;
 	background-color: lightblue;
 }
+
+.leftHeader{
+	display: flex;
+}
+nav {
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+}
 .landingPageImg{
 display: flex;
-justify-content: space-around;
-padding: 50px;
+justify-content: space-between;
+width: 90vw;
+padding: 200px;
 padding-top: 150px;
 }
 .sidebarImg{
