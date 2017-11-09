@@ -32,14 +32,29 @@ function validator(req,res,callback){
 function validId(id) {
   return !isNaN(id);
 }
+
+// router.get('/edit/:id', function(request, response, next) {
+//   db.Book
+// 	.get(request.params.id)
+// 	.then(function(book) {
+//     db.Author
+// 		.get()
+// 		.then(function(author) {
+//       response.render('books/edit-book', { book: book, author: author });
+
 /* GET all books page. */
 router.get('/', function(req, res, next) {
 	knex('book')
 	.select()
 	.then(book => {
-  res.render('allBook', {book: book })
+	knex('author')
+	.select()
+	.then(author =>{
+		console.log({book: book, author: author});
+  res.render('allBook', {book: book, author: author })
+	})
 })
-});
+})
 
 router.get('/new', (req, res) =>{
 	res.render('newBook')
